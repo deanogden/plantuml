@@ -1,0 +1,71 @@
+@startuml test
+skinparam rectangle<<behavior>> {
+	roundCorner 25
+}
+sprite $bProcess jar:archimate/business-process
+sprite $bActor jar:archimate/business-actor
+sprite $bActivity jar:archimate/business-activity
+sprite $aService jar:archimate/application-service
+sprite $aComponent jar:archimate/application-component
+sprite $bCapability jar:archimate/strategy-capability
+
+header
+Test One view
+endheader
+
+rectangle "Commercial and Institutional" <<$archimate/business-function>> #Business{
+    rectangle "Start and Manage My Business Relationship"  <<$archimate/business-service>>#Business{
+        rectangle "SAMMBR"  as SAMMBR <<$bActor>><<behavior>> #Business
+        rectangle "App 1"  as SAM1 <<$aComponent>> #Application 
+        rectangle "App 2"  as SAM2 <<$aComponent>> #Application 
+        rectangle "App 3"  as SAM3 <<$aComponent>> #Application 
+        rectangle "App 4"  as SAM4 <<$aComponent>> #Application 
+        rectangle "App 5"  as SAM5 <<$aComponent>> #Application 
+        rectangle "App 6"  as SAM6 <<$aComponent>> #Application 
+
+    }
+        rectangle "Manage My Growth"  <<$archimate/business-service>>#Business{
+        rectangle "MMG"  as MMG <<$bActor>><<behavior>> #Business
+        rectangle "App 1"  as MMG1 <<$aComponent>> #Application 
+        rectangle "App 2"  as MMG2 <<$aComponent>> #Application 
+        rectangle "App 3"  as MMG3 <<$aComponent>> #Application 
+        rectangle "App 4"  as MMG4 <<$aComponent>> #Application 
+        rectangle "App 5"  as MMG5 <<$aComponent>> #Application 
+        rectangle "App 6"  as MMG6 <<$aComponent>> #Application 
+        rectangle "App 7"  as MMG7 <<$aComponent>> #Application 
+        rectangle "App 8"  as MMG8 <<$aComponent>> #Application 
+
+    }
+    rectangle "Capability 1" as Cap1  <<$bCapability>>#Business 
+    rectangle "Capability 2" as Cap2 <<$bCapability>>#Business 
+    rectangle "Capability 3" as Cap3 <<$bCapability>>#Business 
+    rectangle "Capability 4" as Cap4 <<$bCapability>>#Business
+}
+
+SAMMBR -[hidden]d- SAM1
+SAMMBR -[hidden]d- SAM2
+SAMMBR -[hidden]d- SAM3
+SAMMBR -[hidden]d- SAM4
+SAMMBR -[hidden]d- SAM5
+SAMMBR -[hidden]d- SAM6
+
+MMG -[hidden]d- MMG1
+MMG -[hidden]d- MMG2
+MMG -[hidden]d- MMG3
+MMG -[hidden]d- MMG4
+MMG -[hidden]d- MMG5
+MMG -[hidden]d- MMG6
+MMG1 -[hidden]d- MMG7
+MMG2 -[hidden]d- MMG8
+SAM1 .d..|> Cap1: i
+SAM1 .d..|> Cap3: i
+SAM1 .d..|> Cap4: i
+SAM2 .d..|> Cap3
+SAM2 .d..|> Cap4
+SAM3 .d..|> Cap2
+
+MMG1 .d..|> Cap1
+MMG7 .d..|> Cap2
+MMG7 .d..|> Cap4
+
+@enduml
